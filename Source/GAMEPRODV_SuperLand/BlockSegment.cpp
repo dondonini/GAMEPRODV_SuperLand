@@ -11,7 +11,7 @@ ABlockSegment::ABlockSegment()
 
 	// Initialization
 	bIsBlockEnabled = false;
-	fvRootPosition = &GetActorLocation();
+	fvRootPosition = GetActorLocation();
 }
 
 // Called when the game starts or when spawned
@@ -32,13 +32,13 @@ void ABlockSegment::Tick(float DeltaTime)
 // Sets the root position of the entire block
 void ABlockSegment::SetRootPosition(FVector NewPosition)
 {
-	fvRootPosition = &NewPosition;
+	fvRootPosition = NewPosition;
 }
 
 // Returns root position
 FVector ABlockSegment::GetRootPosition()
 {
-	return *fvRootPosition;
+	return fvRootPosition;
 }
 
 // Set block to be enabled
