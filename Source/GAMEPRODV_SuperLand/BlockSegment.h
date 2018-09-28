@@ -30,6 +30,9 @@ public:
 	void SetRootPosition(FVector NewPosition);
 
 	UFUNCTION()
+	FVector GetRootPosition();
+
+	UFUNCTION()
 	void SetBlockEnabled(bool Value);
 	
 private:

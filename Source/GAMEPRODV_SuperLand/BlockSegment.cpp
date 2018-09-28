@@ -32,7 +32,13 @@ void ABlockSegment::Tick(float DeltaTime)
 // Sets the root position of the entire block
 void ABlockSegment::SetRootPosition(FVector NewPosition)
 {
+	fvRootPosition = &NewPosition;
+}
 
+// Returns root position
+FVector ABlockSegment::GetRootPosition()
+{
+	return *fvRootPosition;
 }
 
 // Set block to be enabled
