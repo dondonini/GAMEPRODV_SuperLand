@@ -4,16 +4,19 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
-#include "LandBase.generated.h"
+#include "BlockSegment.generated.h"
 
 UCLASS()
-class GAMEPRODV_SUPERLAND_API ALandBase : public AActor
+class GAMEPRODV_SUPERLAND_API ABlockSegment : public AActor
 {
 	GENERATED_BODY()
 	
+	bool bIsBlockEnabled;
+	FVector* fvRootPosition;
+
 public:	
 	// Sets default values for this actor's properties
-	ALandBase();
+	ABlockSegment();
 
 protected:
 	// Called when the game starts or when spawned
@@ -23,12 +26,12 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
-	// Top Land Segment
-	UPROPERTY(EditAnywhere)
-	UChildActorComponent* topSegment;
+	UFUNCTION()
+	void SetRootPosition(FVector NewPosition);
 
-	// Bottom Land Segment
-	UPROPERTY(EditAnywhere)
-	UChildActorComponent* bottomSegment;
+	UFUNCTION()
+	void SetBlockEnabled(bool Value);
 	
+private:
+	void EaseToPosition();
 };

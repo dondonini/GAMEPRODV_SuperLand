@@ -14,7 +14,7 @@ class GAMEPRODV_SUPERLAND_API AGAMEPRODV_SuperLandGameModeBase : public AGameMod
 {
 	GENERATED_BODY()
 	
-	
+	float* fLandStartPosition;
 	
 	
 };
