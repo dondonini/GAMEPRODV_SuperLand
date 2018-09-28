@@ -23,6 +23,12 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
-	
+	// Top Land Segment
+	UPROPERTY(EditAnywhere)
+	UChildActorComponent* topSegment;
+
+	// Bottom Land Segment
+	UPROPERTY(EditAnywhere)
+	UChildActorComponent* bottomSegment;
 	
 };
