@@ -16,5 +16,19 @@ class GAMEPRODV_SUPERLAND_API AGAMEPRODV_SuperLandGameModeBase : public AGameMod
 	
 	float* fLandStartPosition;
 	
-	
+	AGAMEPRODV_SuperLandGameModeBase();
+
+protected:
+	virtual void Tick(float DeltaTime) override;
+
+public:
+
+	struct EaseData
+	{
+		float edElapsedTime;
+		float edStartTime;
+		float edDuration;
+		FVector* dPosition;
+		Ease edFunc;
+	};
 };
