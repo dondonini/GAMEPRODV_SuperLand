@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/GameModeBase.h"
+#include "Libraries/EasingFunctions/easing.h"
 #include "GAMEPRODV_SuperLandGameModeBase.generated.h"
 
 /**

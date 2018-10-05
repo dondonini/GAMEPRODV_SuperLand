@@ -12,7 +12,7 @@ class GAMEPRODV_SUPERLAND_API ABlockSegment : public AActor
 	GENERATED_BODY()
 	
 	bool bIsBlockEnabled;
-	FVector* fvRootPosition;
+	FVector fvRootPosition;
 
 
 public:	
@@ -41,7 +41,7 @@ public:
 	
 private:
 
-	FVector* fvPreviousRootPosition;
+	FVector fvPreviousRootPosition;
 
 	// Dynamically animates the block to position
 	void UpdatePositionToRootPosision();
