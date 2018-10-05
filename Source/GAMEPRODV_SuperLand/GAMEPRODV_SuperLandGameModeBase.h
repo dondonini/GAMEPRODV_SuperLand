@@ -7,6 +7,15 @@
 #include "Libraries/EasingFunctions/easing.h"
 #include "GAMEPRODV_SuperLandGameModeBase.generated.h"
 
+struct TweenData
+{
+	float tdElaspedTime;
+	float tdStartTime;
+	float tdDuration;
+	FVector* tdStartPosition;
+	Ease tdFunc;
+};
+
 /**
  * 
  */
@@ -24,12 +33,4 @@ protected:
 	
 public:
 
-	struct TweenData
-	{
-		float tdElaspedTime;
-		float tdStartTime;
-		float tdDuration;
-		FVector* tdStartPosition;
-		Ease tdFunc;
-	};
 };
