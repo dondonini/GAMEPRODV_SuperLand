@@ -1,6 +1,8 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "BlockSegment.h"
+#include "Components/SceneComponent.h"
+#include "Components/StaticMeshComponent.h"
 
 
 // Sets default values
@@ -11,12 +13,14 @@ ABlockSegment::ABlockSegment()
 
 	//// Initialization
 	bIsBlockEnabled = false;
-	smBlockMesh = CreateDefaultSubobject<UStaticMeshComponent>("BlockMesh");
 
-	// Set root position to current position
-	FVector pos = this->GetActorLocation();
-	fvRootPosition = &pos;
-	fvPreviousRootPosition = &pos;
+	// Creating root component
+	BlockRoot = CreateDefaultSubobject<USceneComponent>("BlockRoot");
+	RootComponent = BlockRoot;
+
+	// Creating block mesh and attaching it to the root component
+	BlockMesh = CreateDefaultSubobject<UStaticMeshComponent>("BlockMesh");
+	BlockMesh->AttachToComponent(BlockRoot, FAttachmentTransformRules::KeepRelativeTransform);
 
 }
 
@@ -25,6 +29,10 @@ void ABlockSegment::BeginPlay()
 {
 	Super::BeginPlay();
 	
+	// Set root position to current position
+	FVector pos = this->GetActorLocation();
+	*fvRootPosition = pos;
+	*fvPreviousRootPosition = pos;
 }
 
 // Called every frame

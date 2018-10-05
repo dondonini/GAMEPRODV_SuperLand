@@ -27,7 +27,10 @@ public:
 	bool bIsBlockEnabled;
 
 	UPROPERTY(EditAnywhere)
-	UStaticMeshComponent* smBlockMesh;
+	USceneComponent* BlockRoot;
+
+	UPROPERTY(EditAnywhere)
+	UStaticMeshComponent* BlockMesh;
 
 	UFUNCTION()
 	void SetRootPosition(FVector NewPostion);
