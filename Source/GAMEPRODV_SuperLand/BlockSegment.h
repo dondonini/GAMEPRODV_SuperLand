@@ -26,6 +26,9 @@ public:
 	UPROPERTY(EditAnywhere)
 	bool bIsBlockEnabled;
 
+	UPROPERTY(VisibleAnywhere)
+	TweenData* LocalTweenData;
+
 	UPROPERTY(EditAnywhere)
 	USceneComponent* BlockRoot;
 
