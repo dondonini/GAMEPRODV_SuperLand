@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
+#include "GAMEPRODV_SuperLandGameModeBase.h"
 #include "BlockSegment.generated.h"
 
 UCLASS()
@@ -23,11 +24,8 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Enabled")
 	bool bIsBlockEnabled;
-
-	UPROPERTY(VisibleAnywhere)
-	TweenData* LocalTweenData;
 
 	UPROPERTY(EditAnywhere)
 	USceneComponent* BlockRoot;
@@ -35,18 +33,30 @@ public:
 	UPROPERTY(EditAnywhere)
 	UStaticMeshComponent* BlockMesh;
 
-	UFUNCTION()
-	void SetRootPosition(FVector NewPostion);
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Positioning Data")
+	FVector fvRootPosition;
 
-	UFUNCTION()
-	FVector GetRootPosition();
-
-	UFUNCTION()
+	UFUNCTION(BlueprintCallable, Category="Enabled")
 	void SetBlockEnabled(bool Value);
 
-private:
-	void UpdatePositionToRootPosition();
+	/************************************************************************/
+	/* Animating Variables                                                  */
+	/************************************************************************/
 
-	FVector* fvRootPosition;
-	FVector* fvPreviousRootPosition;
+	UPROPERTY(BlueprintReadWrite, Category = "Positioning Data")
+		FVector fvTargetPosition;
+
+	UPROPERTY(BlueprintReadWrite, Category = "Positioning Data")
+		bool bTweenFinished = false;
+
+private:
+
+	UFUNCTION()
+	void DisableActor(bool toHide);
+
+	/************************************************************************/
+	/* References                                                           */
+	/************************************************************************/
+
+	//GAMEPRODV_SuperLandGameModeBase gmGameModeBase;
 };

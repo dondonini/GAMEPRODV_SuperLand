@@ -15,7 +15,7 @@ class GAMEPRODV_SUPERLAND_API AGAMEPRODV_SuperLandGameModeBase : public AGameMod
 {
 	GENERATED_BODY()
 	
-	float fLandStartPosition;
+	
 
 	AGAMEPRODV_SuperLandGameModeBase();
 	
@@ -23,5 +23,9 @@ protected:
 	virtual void Tick(float DeltaTime) override;
 	
 public:
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	float fLandSpawnHeight;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	float fLandSpawnDuration;
 };

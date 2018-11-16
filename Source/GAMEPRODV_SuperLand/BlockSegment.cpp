@@ -3,6 +3,7 @@
 #include "BlockSegment.h"
 #include "Components/SceneComponent.h"
 #include "Components/StaticMeshComponent.h"
+#include "Engine/World.h"
 
 
 // Sets default values
@@ -11,7 +12,7 @@ ABlockSegment::ABlockSegment()
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
-	//// Initialization
+	// Initialization
 	bIsBlockEnabled = false;
 
 	// Creating root component
@@ -22,6 +23,8 @@ ABlockSegment::ABlockSegment()
 	BlockMesh = CreateDefaultSubobject<UStaticMeshComponent>("BlockMesh");
 	BlockMesh->AttachToComponent(BlockRoot, FAttachmentTransformRules::KeepRelativeTransform);
 
+	//gmGameModeBase = Cast<GAMEPRODV_SuperLandGameModeBase*>(GetWorld()->GetAuthGameMode());
+
 }
 
 // Called when the game starts or when spawned
@@ -31,8 +34,7 @@ void ABlockSegment::BeginPlay()
 	
 	// Set root position to current position
 	FVector pos = this->GetActorLocation();
-	*fvRootPosition = pos;
-	*fvPreviousRootPosition = pos;
+	fvRootPosition = pos;
 }
 
 // Called every frame
@@ -40,25 +42,16 @@ void ABlockSegment::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
-	fvPreviousRootPosition = fvRootPosition;
-}
+	if (bIsBlockEnabled)
+	{
+		fvTargetPosition = fvRootPosition;
+	}
+	else
+	{
+		fvTargetPosition = fvRootPosition;
+		//fvTargetPosition.Z = ;
+	}
 
-/**
- * Sets the target position for the segment and triggers the animation
- * @param NewPosition - New target position
- */
-void ABlockSegment::SetRootPosition(FVector NewPostion)
-{
-	fvRootPosition = &NewPostion;
-}
-
-/**
- * Returns the current target position of the segment
- * @return Target segment position
- */
-FVector ABlockSegment::GetRootPosition()
-{
-	return *fvRootPosition;
 }
 
 /**
@@ -70,15 +63,12 @@ void ABlockSegment::SetBlockEnabled(bool Value = true)
 	bIsBlockEnabled = Value;
 }
 
-/**
- * Updates the position via. tweening functions
- */
-void ABlockSegment::UpdatePositionToRootPosition()
+void ABlockSegment::DisableActor(bool toHide)
 {
-	if (fvRootPosition != fvPreviousRootPosition) return;
+	// Hides visible components
+	SetActorHiddenInGame(toHide);
 
-	// TODO: Add tween function
-
-	this->SetActorLocation(*fvRootPosition);
+	// Disables collision components
+	SetActorEnableCollision(false);
 }
 

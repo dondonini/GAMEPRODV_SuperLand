@@ -7,7 +7,8 @@
 
 AGAMEPRODV_SuperLandGameModeBase::AGAMEPRODV_SuperLandGameModeBase()
 {
-
+	fLandSpawnHeight = -100.0f;
+	fLandSpawnDuration = 1.0f;
 }
 
 void AGAMEPRODV_SuperLandGameModeBase::Tick(float DeltaTime)
